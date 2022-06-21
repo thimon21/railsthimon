@@ -1,63 +1,65 @@
 <% provide(:title, "ユーザー詳細") %>
     <main>
 
-      <section class="text-center pt-5 pb-2">
-        <h2 class="mb-4">ユーザ情報</h2>
-        <div class="container-fluid">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td class="text-center">
-                  ユーザID
-                </td>
-                <td>
-                  <%= @user.id %>
-                </td>
-              </tr>
+      <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+        <section class="text-center pt-5 pb-2">
+          <h2 class="mb-4">ユーザ情報</h2>
+          <div class="container-fluid">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    ユーザID
+                  </td>
+                  <td>
+                    <%= @user.id %>
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="text-center">
-                  氏名
-                </td>
-                <td>
-                  <%= @user.last_name %>
-                  <%= @user.first_name %>
-                </td>
-              </tr>
+                <tr>
+                  <td class="text-center">
+                    氏名
+                  </td>
+                  <td>
+                    <%= @user.last_name %>
+                    <%= @user.first_name %>
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="text-center">
-                  住所
-                </td>
-                <td>
-                  〒<%= @user.zipcode %><br>
-                  <%= @user.prefecture %>
-                  <%= @user.municipality %>
-                  <%= @user.address %>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center">
-                  電話番号
-                </td>
-                <td>
-                  <%= @user.phone_number %>
-                </td>
-              <tr>
-                <td class="text-center">
-                  メールアドレス
-                </td>
-                <td>
-                  <%= @user.email %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <tr>
+                  <td class="text-center">
+                    住所
+                  </td>
+                  <td>
+                    〒<%= @user.zipcode %><br>
+                    <%= @user.prefecture %>
+                    <%= @user.municipality %>
+                    <%= @user.address %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">
+                    電話番号
+                  </td>
+                  <td>
+                    <%= @user.phone_number %>
+                  </td>
+                <tr>
+                  <td class="text-center">
+                    メールアドレス
+                  </td>
+                  <td>
+                    <%= @user.email %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="text-center">
+          <%= link_to '修正/退会する', edit_user_path, class: "btn btn-primary" %>
         </div>
-      </section>
-
-      <div class="text-center">
-        <a class="btn btn-primary" href="#" role="button">修正/退会する</a>
-      </div>
+      <% end %>
 
     </main>
