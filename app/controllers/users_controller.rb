@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :correct_user, only: [:show, :edit, :update]
+  include SessionsHelper
   def show
     @user = User.find_by(id: params[:id])
   end
-  
+
   def edit
-    @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     if @user.update!(user_params)
       flash[:success] = '更新に成功しました'
       redirect_to @user
