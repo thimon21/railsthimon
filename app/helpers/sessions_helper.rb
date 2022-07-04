@@ -23,7 +23,7 @@ module SessionsHelper
   def correct_user
     @user = User.find_by(id: params[:id])
     if current_user != @user
-      flash[:danger] = '他人のユーザー情報を編集することはできません'
+      flash[:danger] = '他人の情報にアクセスすることはできません'
       redirect_to @current_user
       #TODO: TOPページができたらそちらに遷移させる
     end
