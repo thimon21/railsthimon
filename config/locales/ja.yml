@@ -6,18 +6,3 @@ ja:
       next: "次 ›"
       previous: "‹ 前"
       truncate: "…"
-  activerecord:
-    models:
-      user: ユーザー
-    attributes:
-      user:
-        last_name: 姓
-        first_name: 名
-        password: パスワード
-        zippcode: 住所
-        prefecture: 都道府県
-        municipality: 市区町村
-        address: 住所
-        apartments: 建物名
-        email: Eメール
-        phone_number: 電話番号
