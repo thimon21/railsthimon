@@ -31,6 +31,6 @@ module SessionsHelper
 
   def log_out
     session.delete(:user_id)
-    #TODO: 右記追記 @current_user = nil
+    @current_user = nil
   end
 end
