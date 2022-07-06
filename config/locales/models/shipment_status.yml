@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      shipment_status: 発送状態
+    attributes:
+      shipment_status:
+        shipment_status_name: 発送状態名

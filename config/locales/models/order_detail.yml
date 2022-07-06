@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      order_detail: 注文詳細
+    attributes:
+      order_detail:
+        order_detail_number: 注文番号
+        order_quantity: 注文個数
+        shipment_date: 発送日

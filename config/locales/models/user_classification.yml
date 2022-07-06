@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      user_classification: ユーザー種別
+    attributes:
+      user_classification:
+        user_classification_name: ユーザ種別名
