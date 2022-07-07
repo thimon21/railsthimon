@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user.update!(user_params)
+    if @user.update(user_params)
       flash[:success] = '更新に成功しました'
       redirect_to @user
     else
