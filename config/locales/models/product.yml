@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      product: 商品
+    attributes:
+      product:
+        product_name: 商品名
+        price: 販売単価
+        regist_date: 商品登録日

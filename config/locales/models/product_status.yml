@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      product_status: 商品状態
+    attributes:
+      product_status:
+        product_status_name: 商品状態名

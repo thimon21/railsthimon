@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      sale_status: 販売状態
+    attributes:
+      sale_status:
+        sale_status_name: 販売状態名

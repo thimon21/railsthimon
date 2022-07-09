@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      purchase: 仕入
+    attributes:
+      purchase:
+        purchase_price: 仕入価格
+        purchase_quantity: 仕入個数
+        purchase_company: 仕入先会社
+        order_date: 発注日
+        purchase_date: 納入日
