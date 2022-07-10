@@ -5,16 +5,29 @@
         <h1><%= link_to "探求学園Rails専攻", root_path, class: "nav-link navbar-brand" %></h1>
       </div>
       <div>
-        <ul>
-          <p>〇〇 ××さん</p>
-        </ul>
-        <ul class="navbar-nav">
-          <a class="nav-link text-dark" href="#">商品検索</a>
-          <a class="nav-link text-dark" href="#">カート</a>
-          <a class="nav-link text-dark" href="#">注文履歴</a>
-          <a class="nav-link text-dark" href="#">ユーザ情報</a>
-          <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link text-dark" %>
-        </ul>
+        <% if logged_in? %>
+          <ul>
+            <p> <%= current_user.last_name %>
+            <%= current_user.first_name %>さん</p>
+          </ul>
+          <ul class="navbar-nav">
+            <%= link_to '商品検索', products_path, class: "nav-link text-dark" %>
+            <%# TODO: カート機能実装後にそちらに遷移させる%>
+            <a class="nav-link text-dark" href="#">カート</a>
+            <%# TODO: 注文履歴実装後そちらに遷移させる%>
+            <a class="nav-link text-dark" href="#">注文履歴</a>
+            <%= link_to 'ユーザ情報', current_user, class: "nav-link text-dark" %>
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link text-dark" %>
+          </ul>
+        <% else %>
+          <ul>
+            <li>
+              <%= link_to 'ログイン', login_path, class: "text-dark" %>
+              <%# TODO: TODO: 新規登録ページができたらそちらに遷移させる%>
+              <a class="text-dark" href="#"> 新規登録 </a>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>
