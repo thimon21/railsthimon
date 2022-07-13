@@ -5,7 +5,7 @@
   <div class="row mb-5 ml-5">
     <div class="col-sm-6 offset-sm-3">
       <%= form_with(model: @user, local: true, url: signup_path) do |f| %>
-        <%= render 'shared/user_error_messages' %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div>
           <p>氏名</p>
           <div class="row ms-2">
