@@ -7,6 +7,7 @@ ja:
         last_name: 姓
         first_name: 名
         password: パスワード
+        password_confirmation: パスワード再入力
         zipcode: 住所
         prefecture: 都道府県
         municipality: 市区町村
