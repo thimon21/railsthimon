@@ -1,0 +1,97 @@
+<% provide(:title, "ユーザー登録") %>
+<div class="container">
+  <div class="jumbotron text-center bg-white mt-5">
+    <h2>お客様情報登録</h2>
+  </div>
+  <div class="row mb-5 ml-5">
+    <div class="col-sm-6 offset-sm-3">
+      <%= form_with(model: @user, local: true, url: signup_path) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div>
+          <p>氏名</p>
+          <div class="row ms-2">
+            <%= f.label :last_name, "姓", {class: "col-sm"} %>
+            <div class="col-sm-5">
+              <%= f.text_field :last_name, class:'form-control' %>
+            </div>
+            <%= f.label :first_name, "名", {class: "col-sm"} %>
+            <div class="col-sm-5">
+              <%= f.text_field :first_name, class:'form-control' %>
+            </div>
+          </div>
+          <div>
+            <%= f.label :zipcode, "郵便番号" %>
+            <div class="col-sm-6 ms-4">
+              <%= f.text_field :zipcode, class:'form-control' %>
+            </div>
+          </div>
+          <div>
+            <p class="mb-1">住所</p>
+            <div class="ms-4">
+              <div class="row">
+                <%= f.label :prefecture, "都道府県", {class: "mt-2 ml-4 col-sm"} %>
+                <div class="col-sm-9 mt-1">
+                  <%= f.text_field :prefecture, class:'form-control' %>
+                </div>
+              </div>
+
+              <div class="row">
+                <%= f.label :municipality, "市区町村", {class: "mt-2 ml-4 col-sm"} %>
+                <div class="col-sm-9 mt-1">
+                  <%= f.text_field :municipality, class:'form-control' %>
+                </div>
+              </div>
+              <div class="row">
+                <%= f.label :address, "番地", {class: "mt-2 ml-4 col-sm"} %>
+                <div class="col-sm-9 ml-4 mt-1">
+                  <%= f.text_field :address, class:'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <%= f.label :apartments, "マンション・部屋番号", {class: "ml-2 ms-4"} %>
+            <div class="offset-sm-1">
+              <div class="ml-5 mr-5">
+                <%= f.text_field :apartments, class:'form-control' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <%= f.label :email, "メールアドレス" %>
+          <div class="ml-3 mr-5 ms-4">
+            <%= f.text_field :email, class:'form-control' %>
+          </div>
+        </div>
+        <div>
+          <%= f.label :phone_number, "電話番号" %>
+          <div class="ml-3 mr-5 ms-4">
+            <%= f.text_field :phone_number, class:'form-control' %>
+          </div>
+        </div>
+        <div>
+          <%= f.label :password, "パスワード" %>
+          <div class="col-sm-8 ms-4">
+            <%= f.password_field :password, class:'form-control' %>
+          </div>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, "パスワード再入力" %>
+          <div class="col-sm-8 ms-4">
+            <%= f.password_field :password_confirmation, class:'form-control' %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2 mt-5">
+            <%= f.submit "登録", class: "btn btn-primary btn-block" %>
+
+          </div>
+        </div>
+      <% end %>
+      <div class="mt-5 text-center">
+        <h3><%= link_to 'ログインはこちらから', login_path %></h3>
+      </div>
+    </div>
+  </div>
+</div>
