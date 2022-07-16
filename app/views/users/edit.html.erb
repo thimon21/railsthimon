@@ -4,7 +4,7 @@
       <h2 class="text-center mt-5">ユーザ情報修正</h2>
       <div>
         <%= form_with(model: @user, local: true) do |f| %>
-          <table width="50%" style="margin-left:350px">       
+          <table width="50%" style="margin-left:350px">
             <tr height="40">
               <td align="center">
                 氏名<span style="float: right">
@@ -68,7 +68,7 @@
                 <%= f.label :address, "メールアドレス" %>
               </td>
               <td colspan="2">
-                <%= f.email_field :email %> 
+                <%= f.email_field :email %>
               </td>
             </tr>
 
@@ -77,16 +77,16 @@
                 <%= f.label :phone_number, "電話番号" %>
               </td>
               <td colspan="2">
-                <%= f.text_field :phone_number %> 
+                <%= f.text_field :phone_number %>
               </td>
             </tr>
-          
+
             <tr height="40">
               <td align="center">
                 <%= f.label :password, "パスワード" %>
               </td>
               <td colspan="2">
-                <%= f.password_field :password %> 
+                <%= f.password_field :password %>
               </td>
             </tr>
 
@@ -95,23 +95,23 @@
               <%= f.label :password_confirmation, "パスワード(再入力)" %>
               </td>
               <td colspan="2">
-              <%= f.password_field :password_confirmation %> 
+              <%= f.password_field :password_confirmation %>
               </td>
             </tr>
           </table>
 
           <div class="row mt-5">
             <div class="col-5">
-              <div class="d-flex justify-content-end">  
+              <div class="d-flex justify-content-end">
                 <%= f.submit "修正", class: "btn btn-primary" %>
               </div>
             </div>
-        
+
             <div class="col-5 offset-2">
-              <button class="btn btn-danger" type="submit">退会</button>
+              <%= link_to "退会", @user, method: :delete, data: { confirm: "このユーザーに関するデータが全て削除されます。本当に退会しますか？" }, class: "btn btn-danger" %>
             </div>
           </div>
         <% end %>
-      </div>  
-           
+      </div>
+
     </main>
