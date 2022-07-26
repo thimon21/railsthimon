@@ -13,9 +13,9 @@
           </div>
           <div class="mt-5 ml-3">
             <p>注文番号：<%= @order.order_number %></p>
-            <p>注文状態：<%= @order.shipment_status_exists? %></p>
+            <p>注文状態：<%= @order.shipment_status_exists %></p>
           </div>
-          <% if @order.shipment_status_exists? %>
+          <% if @order.shipment_status_exists %>
             <div class="text-end">
               <%# TODO: 注文キャンセル実装後にそちらに遷移させる%>
               <button type="button" class="btn btn-danger">注文をキャンセルする</button>

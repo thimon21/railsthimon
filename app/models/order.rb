@@ -8,7 +8,7 @@ class Order < ApplicationRecord
     end
   end
 
-  def shipment_status_exists?
+  def shipment_status_exists
     if order_details.any? {|order_detail| order_detail.shipment_status.shipment_status_name == '準備中'}
       p "準備中"
     else
