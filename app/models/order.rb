@@ -3,9 +3,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
 
   def total_price
-    order_detail.sum do |order_detail|
-      order_detail.sub_total_price
-    end
+    order_details.sum(&:sub_total_price)
   end
 
   def shipment_status_exists
