@@ -6,7 +6,7 @@ class Order < ApplicationRecord
     order_details.sum(&:sub_total_price)
   end
 
-  def find_order_shipment_status
+  def order_shipment_status
     if order_details.any? {|order_detail| order_detail.shipment_status.shipment_status_name == '準備中'}
       "準備中"
     else
