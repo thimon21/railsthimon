@@ -13,7 +13,7 @@
           </div>
           <div class="mt-5 ml-3">
             <p>注文番号：<%= @order.order_number %></p>
-            <p>注文状態：<%= @order.order_shipment_status ? "注文状態：準備中" : "注文状態：発送済" %></p>
+            <p>注文状態：<%= @order.order_shipment_status %></p>
           </div>
           <% if @order.order_shipment_status == "準備中" %>
             <div class="text-end">
