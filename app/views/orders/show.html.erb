@@ -1,0 +1,71 @@
+<% provide(:title, "注文詳細") %>
+  <main>
+  <%= form_with(url: orders_path, method: :get, local: true) do |f| %>
+    <% if @order.present? %>
+      <div class="mt-5 container">
+        <div class="jumbotron bg-white">
+          <div class="card border-dark">
+            <div class="cord-body ml-3">
+              <h4 class="mt-4">お届け先</h4>
+              <p class="ml-3">〒<%= @order.user.zipcode %>  <%=@order.user.prefecture %>  <%=@order.user.municipality %>  <%=@order.user.address %></p>
+              <p class="offset-sm-2"><%= @order.user.last_name %>  <%= @order.user.first_name %>様</p>
+            </div>
+          </div>
+          <div class="mt-5 ml-3">
+            <p>注文番号：<%= @order.order_number %></p>
+            <p>注文状態：<%= @order.order_shipment_status %></p>
+          </div>
+          <% if @order.order_shipment_status == "準備中" %>
+            <div class="text-end">
+              <%# TODO: 注文キャンセル実装後にそちらに遷移させる%>
+              <button type="button" class="btn btn-danger">注文をキャンセルする</button>
+            </div>
+          <% end %>
+          <table class="table table-borderless mt-3">
+            <thead>
+              <tr>
+                <th scope="col" class="border-top border-bottom">No</th>
+                <th scope="col" class="border-top border-bottom">商品名</th>
+                <th scope="col" class="border-top border-bottom">商品カテゴリ</th>
+                <th scope="col" class="border-top border-bottom">値段</th>
+                <th scope="col" class="border-top border-bottom">個数</th>
+                <th scope="col" class="border-top border-bottom">小計</th>
+                <th scope="col" class="border-top border-bottom">備考</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.order_details.each do |order_detail| %>
+                <tr>
+                  <th scope="row"><%= order_detail.order_detail_number %></th>
+                  <td><%= order_detail.product.product_name %></td>
+                  <td><%= order_detail.product.category.category_name %></td>
+                  <td><%= order_detail.product.price %>円</td>
+                  <td><%= order_detail.order_quantity %>個</td>
+                  <td><%= order_detail.sub_total_price %>円</td>
+                  <td>状態：<%= order_detail.shipment_status.shipment_status_name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="border-top border-dark">
+            <div class="mt-2 offset-sm-6">
+              <p class="ml-4">合計 <%= total_price %>円</p>
+            </div>
+          </div>
+          <div class="text-end mb-5">
+            <button type="button" class="btn btn-info">注文履歴に戻る</button>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="container">
+        <div class="jumbotron text-center bg-white"></div>
+        <div class="mt-5 text-center">
+          <h1>該当の注文は見つかりませんでした…</h1>
+          <p class="mt-5">注文履歴画面に戻り、やり直してください</p>
+          <button type="button" class="btn btn-primary">注文履歴へ</button>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  </main>
