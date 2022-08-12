@@ -24,6 +24,7 @@ class CartsController < ApplicationController
       @cart = Cart.new(user: current_user)
       @cart.cart_items.new(product_id: params[:product_id], quantity: params[:quantity])
       @cart.save
+      redirect_to cart
     end
   end
 
