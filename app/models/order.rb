@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   has_many :order_details, dependent: :destroy
+  has_many :products, through: :order_details
 
   def total_price
     order_details.sum(&:sub_total_price)

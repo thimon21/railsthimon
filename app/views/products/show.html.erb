@@ -11,16 +11,17 @@
             <p><%= @product.description %></p>
             <p class="mt-4 mb-5">価格：<%= @product.price %>円</p>
           </div>
+        <%= form_with(model: @cart, url: add_item_path, method: :post, local: true)do |f| %>
         <div class="row justify-content-center">
-          <label for="order_quanity" class="mt-1 col-sm-1">購入個数</label>
-          <div class="col-sm-1">
-            <input required type="text" class="form-control" id="order_quanity" pattern="[1-9][0-9]*" min="1">
-          </div>
-          <label class="mt-1 col-sm-1">個</label>
-          <div class="col-sm-2">
-            <button type="button" class="btn btn-primary btn-block">カートへ</button>
-          </div>
-        </div>
+          <%= f.label :quantity, "購入個数", class: "mt-1 col-sm-1" %>
+            <div class="col-sm-1">
+              <%= f.text_field :quantity, class:'form-control', pattern: "[1-9][0-9]*", min: "1" %>
+              <%= f.hidden_field :product_id, :value => @product.id %>
+            </div>
+            <label class="mt-1 col-sm-1">個</label>
+            <div class="col-sm-2">
+              <%= f.submit "カートへ",  class: "btn btn-primary btn-block" %>
+        <% end %>
       <% else %>
         <div class="mt-5 text-center">
           <h1>該当商品が見つかりませんでした…</h1>

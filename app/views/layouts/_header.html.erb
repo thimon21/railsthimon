@@ -12,8 +12,8 @@
           </ul>
           <ul class="navbar-nav">
             <%= link_to '商品検索', products_path, class: "nav-link text-dark" %>
-            <%# TODO: カート機能実装後にそちらに遷移させる%>
-            <a class="nav-link text-dark" href="#">カート</a>
+            <%# TODO: カートがない時に反応しない%>
+            <%= link_to 'カートへ', current_user.cart, class: "nav-link text-dark" %>
             <%# TODO: 注文履歴実装後そちらに遷移させる%>
             <a class="nav-link text-dark" href="#">注文履歴</a>
             <%= link_to 'ユーザ情報', current_user, class: "nav-link text-dark" %>

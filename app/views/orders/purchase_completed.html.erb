@@ -1,0 +1,15 @@
+<% provide(:title, "購入完了画面") %>
+  <main>
+    <div class="blockquote mt-5 text-center">
+      <h1 style="font-weight: bolder">購入完了しました</h1>
+    </div>
+    <%= form_with(url: orders_path, method: :get, local: true) do |f| %>
+      <div class="container-sm mt-5 text-center">
+        <p class="h1">ご購入ありがとうございます！</p>
+        <p class="h1">注文番号:</p>
+      </div>
+    <% end %>
+    <div class="container text-center mt-5">
+      <%= link_to "Topに戻る", root_path, class: "btn btn-primary mt-5" %>
+    </div>
+  </main>
