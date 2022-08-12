@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new
     @order.user_id = current_user.id
+    @order.order_number = p SecureRandom.hex(2)
     if @order.save!
       @cart_items = current_user.cart.cart_items
       @cart_items.each do |cart_item|

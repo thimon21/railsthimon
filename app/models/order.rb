@@ -14,4 +14,8 @@ class Order < ApplicationRecord
       "発送済"
     end
   end
+
+  def self.hex(n=nil)
+    random_bytes(n).unpack("H*")[0]
+  end
 end
