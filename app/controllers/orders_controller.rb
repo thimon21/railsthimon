@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   include SessionsHelper
 
   def create
-    byebug
     order_number = p SecureRandom.hex(2)
     @order = Order.create(user_id: current_user.id, order_number: order_number)
     @cart_items = current_user.cart.cart_items
