@@ -2,11 +2,6 @@ class OrdersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
   include SessionsHelper
 
-  def new
-    @order = Order.new
-    @user = current_user
-  end
-
   def create
     @order = Order.new
     @order.user_id = current_user.id
