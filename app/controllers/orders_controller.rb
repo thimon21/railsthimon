@@ -3,11 +3,10 @@ class OrdersController < ApplicationController
   include SessionsHelper
 
   def create
-    @order = Order.new
-    @order.user_id = current_user.id
-    @order.order_number = p SecureRandom.hex(2)
-    if @order.save!
-      @cart_items = current_user.cart.cart_items
+    byebug
+    order_number = p SecureRandom.hex(2)
+    @order = Order.create(user_id: current_user.id, order_number: order_number)
+    @cart_items = current_user.cart.cart_items
       @cart_items.each do |cart_item|
         order_detail = OrderDetail.new(order_id: @order.id)
         order_detail.order_detail_number = @order.id
@@ -17,9 +16,8 @@ class OrdersController < ApplicationController
         order_detail.shipment_status_id = 1
         order_detail.save!
       end
-      current_user.cart.destroy!
-      redirect_to orders_purchase_completed_path
-    end
+    current_user.cart.destroy!
+    redirect_to orders_purchase_completed_path
   end
 
   def show
