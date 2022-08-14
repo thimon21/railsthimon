@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include SessionsHelper
 
   def create
-    order_number = p SecureRandom.hex(2)
+    order_number = SecureRandom.hex(2)
     @order = Order.create(user_id: current_user.id, order_number: order_number)
     @cart_items = current_user.cart.cart_items
       @cart_items.each do |cart_item|
