@@ -6,7 +6,7 @@
     <%= form_with(url: orders_path, method: :get, local: true) do |f| %>
       <div class="container-sm mt-5 text-center">
         <p class="h1">ご購入ありがとうございます！</p>
-        <p class="h1">注文番号:</p>
+        <p class="h1">注文番号:<%= @order.order_number %></p>
       </div>
     <% end %>
     <div class="container text-center mt-5">

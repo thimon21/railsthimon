@@ -12,19 +12,26 @@ class CartsController < ApplicationController
       if cart_item.present?
         cart_item.quantity += params[:quantity].to_i
         cart_item.save
+        flash[:success] = '商品の個数が更新されました。'
         redirect_to cart
       else
         #TODO:paramsの商品と個数を基にカートアイテムを作成
         cart_item = cart.cart_items.new(product_id: params[:product_id], quantity: params[:quantity])
         cart_item.save
+        flash[:success] = 'カートに商品が追加されました。'
         redirect_to cart
       end
     else
       #TODO:paramsの商品と個数を元にカートとカートアイテムを作成
       @cart = Cart.new(user: current_user)
       @cart.cart_items.new(product_id: params[:product_id], quantity: params[:quantity])
-      @cart.save
-      redirect_to @cart
+      if @cart.save
+        flash[:success] = 'カートに商品が追加されました。'
+        redirect_to @cart
+      else
+        flash.now[:danger] = @cart.errors.full_messages
+        render "products/show"
+      end
     end
   end
 

@@ -1,34 +1,35 @@
 <% provide(:title, "商品詳細ページ") %>
-    <main>
-    <div class="container">
-      <% if @product.present? %>
-        <div class="mt-5 jumbotron bg-white">
-          <h1 class="text-center">商品情報</h1>
-          <h2 class="text-center"><%= @product.product_name %></h2>
-          <div class="offset-sm-3">
-            <p class="offset-sm-6">商品カテゴリ：<%= @product.category.category_name %></p>
-            <p>商品説明</p>
-            <p><%= @product.description %></p>
-            <p class="mt-4 mb-5">価格：<%= @product.price %>円</p>
-          </div>
-        <%= form_with(model: @cart, url: add_item_path, method: :post, local: true)do |f| %>
+<main>
+  <div class="container">
+    <% if @product.present? %>
+      <div class="mt-5 jumbotron bg-white">
+        <h1 class="text-center">商品情報</h1>
+        <h2 class="text-center"><%= @product.product_name %></h2>
+        <div class="offset-sm-3">
+          <p class="offset-sm-6">商品カテゴリ：<%= @product.category.category_name %></p>
+          <p>商品説明</p>
+          <p><%= @product.description %></p>
+          <p class="mt-4 mb-5">価格：<%= @product.price %>円</p>
+        </div>
+      <%= form_with url: add_item_path, method: :post, local: true do |f| %>
         <div class="row justify-content-center">
           <%= f.label :quantity, "購入個数", class: "mt-1 col-sm-1" %>
-            <div class="col-sm-1">
-              <%= f.text_field :quantity, class:'form-control', pattern: "[1-9][0-9]*", min: "1", required: true %>
-              <%= f.hidden_field :product_id, :value => @product.id %>
-            </div>
-            <label class="mt-1 col-sm-1">個</label>
-            <div class="col-sm-2">
-              <%= f.submit "カートへ",  class: "btn btn-primary btn-block" %>
-        <% end %>
-      <% else %>
-        <div class="mt-5 text-center">
-          <h1>該当商品が見つかりませんでした…</h1>
-          <p class="mt-5">商品検索画面に戻り、やり直してください</p>
-          <button type="button" class="btn btn-primary">商品検索画面へ</button>
+          <div class="col-sm-1">
+            <%= f.number_field :quantity, class:'form-control', pattern: "[1-9][0-9]*", min: "1", required: true %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+          </div>
+          <label class="mt-1 col-sm-1">個</label>
+          <div class="col-sm-2">
+            <%= f.submit "カートへ",  class: "btn btn-primary btn-block" %>
+          </div>
         </div>
       <% end %>
-        </div>
-    </div>
-    </main>
+    <% else %>
+      <div class="mt-5 text-center">
+        <h1>該当商品が見つかりませんでした…</h1>
+        <p class="mt-5">商品検索画面に戻り、やり直してください</p>
+        <button type="button" class="btn btn-primary">商品検索画面へ</button>
+      </div>
+    <% end %>
+  </div>
+</main>

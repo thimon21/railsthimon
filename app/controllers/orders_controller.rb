@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
         order_detail.save!
       end
     current_user.cart.destroy!
-    redirect_to orders_purchase_completed_path
+    redirect_to orders_purchase_completed_path(order_id: @order)
   end
 
   def show
@@ -23,5 +23,6 @@ class OrdersController < ApplicationController
   end
 
   def purchase_completed
+    @order = Order.find_by(id: params[:order_id])
   end
 end
