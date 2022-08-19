@@ -54,9 +54,13 @@
                     <td class="align-middle">
                       <%= cart_item.product.price %>
                     </td>
-                    <td class="align-middle"><button type="button" class="btn btn-outline-dark">
-                      <%= cart_item.quantity %></button>&nbsp;&nbsp;個
-                    </td>
+                    <%= form_with url: update_item_path, method: :patch, local: true do |f| %>
+                      <td class="align-middle">
+                        <%= f.hidden_field :id, :value => cart_item.product.id %>
+                        <%= f.number_field :quantity, min: 1, value: cart_item.quantity, class: "btn btn-outline-dark w-50" %>個
+                        <%= f.submit "更新", class: "btn btn-primary" %>
+                      </td>
+                    <% end %>
                     <td class="align-middle">
                       <%= cart_item.sum_of_price %>円
                     </td>
