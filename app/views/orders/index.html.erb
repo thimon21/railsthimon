@@ -1,0 +1,61 @@
+<% provide(:title, "注文履歴") %>
+<main>
+  <% if @orders.present? %>
+    <div class="container">
+      <hr style="width:90%; opacity:0.9;">
+      <table class="table">
+        <thead class="table h4">
+
+          <tr>
+            <th class="text-start" width="5%">
+              No
+            </th>
+            <th class="text-start" width="20%">
+              注文番号
+            </th>
+            <th class="text-start" width="40%">
+              お届け先
+            </th>
+            <th class="text-start" width="25%">
+              備考
+            </th>
+            <th class="text-start border-0" width="20%"></th>
+          </tr>
+
+        </thead>
+        <tbody class="h6 font-weight-normal">
+          <% @orders.each.with_index(@orders.offset_value + 1) do |order, index| %>
+            <tr>
+              <th class="font-weight-normal" scope="row">
+                <%= index %>
+              </th>
+              <td class="text-left">
+                <%= order.order_number %>
+              </td>
+              <td class="text-left">
+                〒<%= current_user.zipcode %><br /><%= current_user.prefecture %><%= current_user.municipality %><%= current_user.address %><br />
+                <%= current_user.last_name %> <%= current_user.first_name %> 様
+              </td>
+              <td class="text-left">
+                注文日時：<%= order.created_at.to_s(:datetime_jp) %><br />
+                <%= order.order_shipment_status ? "注文状態：準備中" : "注文状態：発送済" %></td>
+              <td class="border-0 align-middle">
+                <%= link_to '詳細', order_path(order), class: "btn btn-primary btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+
+
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="blockquote mt-5 text-center">
+      <h1 style="font-weight: bolder">該当の注文履歴は見つかりませんでした...</h1>
+    </div>
+  <% end %>
+  <div class="container">
+    <ul class="pagination justify-content-center">
+      <%= paginate @orders %>
+    </ul>
+  </div>

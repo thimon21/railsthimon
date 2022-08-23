@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :index]
   include SessionsHelper
+
+  def index
+    @orders = current_user.orders.page(params[:page]).per(10)
+  end
 
   def create
     order_number = SecureRandom.hex(2)
@@ -24,5 +29,13 @@ class OrdersController < ApplicationController
 
   def purchase_completed
     @order = Order.find_by(id: params[:order_id])
+  end
+
+  def correct_user
+    order = Order.find_by(user: current_user)
+    if current_user != order.user
+      flash[:danger] = '他人の情報にアクセスすることはできません'
+      redirect_to root_url
+    end
   end
 end
