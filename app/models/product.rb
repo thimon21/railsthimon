@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :purchases, dependent: :destroy
   has_many :order_details, dependent: :nullify
+  has_many :orders, through: :order_details
+  has_many :cart_items, dependent: :destroy
 
   enum category: { 寝具: 1, 時計: 2, 食品: 3, 文具: 4 }
 
