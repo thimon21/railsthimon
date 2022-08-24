@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: [:show, :index]
+  before_action :correct_user, only: [:show]
   include SessionsHelper
 
   def index
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def correct_user
-    order = Order.find_by(user: current_user)
+    order = Order.find_by(params[:user_id])
     if current_user.id != order.user_id
       flash[:danger] = '他人の情報にアクセスすることはできません'
       redirect_to root_url
