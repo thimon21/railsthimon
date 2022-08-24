@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
   def correct_user
     order = Order.find_by(user: current_user)
-    if current_user != order.user
+    if current_user.id != order.user_id
       flash[:danger] = '他人の情報にアクセスすることはできません'
       redirect_to root_url
     end
