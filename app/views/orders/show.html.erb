@@ -18,7 +18,7 @@
           <% if @order.order_shipment_status == "準備中" %>
             <div class="text-end">
               <%# TODO: 注文キャンセル実装後にそちらに遷移させる%>
-              <button type="button" class="btn btn-danger">注文をキャンセルする</button>
+              <%= link_to "注文をキャンセルする", @order, method: :delete, data: { confirm: "この注文が全てキャンセルされます。本当にキャンセルしますか？" }, class: "btn btn-danger" %>
             </div>
           <% end %>
           <table class="table table-borderless mt-3">
