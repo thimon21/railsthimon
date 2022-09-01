@@ -12,8 +12,8 @@ class Product < ApplicationRecord
 
   def self.search(product_name, category_id)
     products = Product.all
-    products = products.where('product_name LIKE ?', "%#{product_name}%") if product_name
-    products = products.where(category_id: category_id) if category_id
+    products = products.where('product_name LIKE ?', "%#{product_name}%") if product_name.present?
+    products = products.where(category_id: category_id) if category_id.present?
     products
   end
 end
