@@ -27,6 +27,14 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
   end
 
+  def destroy
+    @order = Order.find_by(id: params[:id])
+    if @order.order_shipment_status == "準備中"
+      @order.destroy!
+      redirect_to orders_path
+    end
+  end
+
   def purchase_completed
     @order = Order.find_by(id: params[:order_id])
   end

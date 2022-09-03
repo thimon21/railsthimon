@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   post '/update_item', to: 'carts#update_item'
   delete '/delete_item', to: 'carts#delete_item'
   get 'orders/purchase_completed', to: "orders#purchase_completed"
-  resources :orders, only: [:new, :create, :show, :index]
+  resources :orders, only: [:new, :create, :show, :index, :destroy]
 end
