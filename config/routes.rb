@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   root 'static_pages#home'
+  post 'guest_sign_in', to: 'sessions#guest_sign_in'
   resources :carts, only: [:show]
   post '/add_item', to: 'carts#add_item'
   post '/update_item', to: 'carts#update_item'

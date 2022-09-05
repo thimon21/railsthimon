@@ -32,4 +32,11 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def ensure_normal_user
+    if current_user.email == 'guest@example.com'
+      flash[:danger] = 'ゲストユーザーは更新・削除できません。'
+      redirect_to root_path
+    end
+  end
 end

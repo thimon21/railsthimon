@@ -58,9 +58,12 @@
         </section>
 
         <div class="text-center">
-          <% if current_user == @user %>
+          <% if @user.email == 'guest@example.com' %>
+              <p>ゲストユーザーはユーザー情報の編集ができません。</p>
+          <% elsif current_user == @user %>
             <%= link_to '修正/退会する', edit_user_path, class: "btn btn-primary" %>
           <% end %>
+
         </div>
       <% end %>
 
