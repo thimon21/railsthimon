@@ -56,6 +56,11 @@ class CartsController < ApplicationController
   #カートアイテム内で個数の更新
   #TODO:UPDATEは別のプルリクで対応
   def update_item
+    byebug
+    @cart = Cart.find_by(user: current_user)
+    @cart_item = CartItem.find_by(params[:id])
+    #@cart_item.update(cart_item_params)
+    redirect_to @cart
   end
 
   #    カートアイテムの削除
@@ -66,3 +71,7 @@ class CartsController < ApplicationController
     flash[:success] = 'カート内アイテムを削除しました'
   end
 end
+
+#def cart_item_params
+	#params.require(:cart_item).permit(:quantity, :product_id)
+#end

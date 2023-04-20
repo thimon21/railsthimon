@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'guest_sign_in', to: 'sessions#guest_sign_in'
   resources :carts, only: [:show]
   post '/add_item', to: 'carts#add_item'
-  post '/update_item', to: 'carts#update_item'
+  patch '/update_item', to: 'carts#update_item'
   delete '/delete_item', to: 'carts#delete_item'
   get 'orders/purchase_completed', to: "orders#purchase_completed"
   resources :orders, only: [:new, :create, :show, :index, :destroy]
